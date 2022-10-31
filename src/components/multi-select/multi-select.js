@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-export class DropdownComponent extends LitElement {
+export class MultiSelect extends LitElement {
   static get properties() {
     return {
       title: { type: String },
@@ -158,4 +158,4 @@ export class DropdownComponent extends LitElement {
   }
 }
 
-customElements.define('dropdown-component', DropdownComponent);
+customElements.define('multi-select', MultiSelect);

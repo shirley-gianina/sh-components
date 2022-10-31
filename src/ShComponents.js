@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import './components/dropdown/dropdown-component.js';
+import './components/multi-select/multi-select.js';
 
 export class ShComponents extends LitElement {
   static get properties() {
@@ -33,11 +33,11 @@ export class ShComponents extends LitElement {
     return html`
       <div class="container">
         <h1>${this.title}</h1>
-        <dropdown-component
+        <multi-select
           @event-changed=${this._handleChanged}
           .items=${this.items}
           title="Idiomas"
-        ></dropdown-component>
+        ></multi-select>
       </div>
     `;
   }
