@@ -1,87 +1,19 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
+import style from './multi-select.style';
+
+import '../checkbox/checkbox.js';
 
 export class MultiSelect extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      placeholder: { type: String },
       items: { type: Array },
     };
   }
 
   static get styles() {
-    return css`
-      :host {
-        min-height: 100vh;
-      }
-
-      .multi-select .title {
-        font-size: 17px;
-        color: #808b96;
-        margin: 0px;
-      }
-
-      .multi-select .select {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1.5px solid #808b96;
-      }
-
-      .multi-select .select p {
-        font-size: 18px;
-        margin: 5px 0px;
-        width: 80%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .multi-select .select img {
-        width: 10px;
-        height: 10px;
-      }
-
-      .multi-select.open .select img {
-        transform: rotate(180deg);
-      }
-
-      .multi-select .select-list ul {
-        background-color: #fff;
-        padding: 10px;
-      }
-
-      .multi-select .select-list ul li {
-        display: flex;
-        align-items: center;
-      }
-
-      .multi-select .checkbox {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1px;
-        width: 15px;
-        height: 15px;
-        background-color: #fff;
-        border: 1px solid black;
-        margin-right: 10px;
-      }
-
-      .multi-select .checkbox.checked {
-        background-color: green;
-      }
-      .multi-select .checkbox.checked::before {
-        color: #fff;
-        content: '🗸';
-        display: block;
-      }
-      .multi-select .select-list {
-        display: none;
-      }
-
-      .multi-select.open .select-list {
-        display: block;
-      }
-    `;
+    return style;
   }
 
   constructor() {
@@ -105,9 +37,7 @@ export class MultiSelect extends LitElement {
               ${this.items.map(
                 (item, idx) => html`
                   <li @click="${e => this._handleItemClick(idx)}">
-                    <div
-                      class="${item.selected ? 'checkbox checked' : 'checkbox'}"
-                    ></div>
+                    <sh-checkbox .checked=${item.selected}></sh-checkbox>
                     <p>${item.title}</p>
                   </li>
                 `
@@ -153,9 +83,13 @@ export class MultiSelect extends LitElement {
   _getSelected() {
     const selectedItems = this.items.filter(item => item.selected === true);
     const titles = selectedItems.map(item => item.title);
-    const result = titles.join(', ');
-    return result;
+    if (titles.length === 0) {
+      return this.placeholder;
+    } else {
+      const result = titles.join(', ');
+      return result;
+    }
   }
 }
 
-customElements.define('multi-select', MultiSelect);
+customElements.define('sh-multi-select', MultiSelect);

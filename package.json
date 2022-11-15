@@ -13,6 +13,7 @@
     "start": "web-dev-server"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "lit": "^2.0.2"
   },
   "devDependencies": {
@@ -28,6 +29,10 @@
     "prettier": "^2.4.1"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
     "extends": [
       "prettier"
     ]

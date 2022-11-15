@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import './components/multi-select/multi-select.js';
+import './components/dropdown/dropdown.js';
+import './components/search/search.js';
 
 export class ShComponents extends LitElement {
   static get properties() {
@@ -33,11 +35,21 @@ export class ShComponents extends LitElement {
     return html`
       <div class="container">
         <h1>${this.title}</h1>
-        <multi-select
+        <!--       <sh-multi-select
           @event-changed=${this._handleChanged}
           .items=${this.items}
           title="Idiomas"
-        ></multi-select>
+          placeholder="Selecciona los idiomas"
+        ></sh-multi-select> -->
+
+        <!--        <sh-dropdown placeholder="test">
+          <sh-dropdown-item> españa </sh-dropdown-item>
+          <sh-dropdown-item> portugal </sh-dropdown-item>
+          <sh-dropdown-item> Brasil </sh-dropdown-item>
+          <sh-dropdown-item> Argetina </sh-dropdown-item>
+        </sh-dropdown> -->
+
+        <sh-search></sh-search>
       </div>
     `;
   }
